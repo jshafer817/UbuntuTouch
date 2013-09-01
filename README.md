@@ -33,6 +33,6 @@ Add the files from Important Files After Compiling<br>
 
 http://forum.xda-developers.com/showthread.php?t=2426924
 
+jshafer817 - OrokuSaki
 Justin Shafer
-OrokuSaki
-jshafer817
+

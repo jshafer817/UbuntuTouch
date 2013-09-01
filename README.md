@@ -17,13 +17,23 @@ http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html
 
 I also changed the board-tenderloin.c file and flipped and X and Y for Rotation.
 https://bitbucket.org/cyanogenmod/hp-kernel-tenderloin/commits/be2dc4932490<br>
-.h_range = LSM303DLH_MAG_H_4_0G<br>
- .axis_map_x = 1,<br>
- .axis_map_y = 0,<br>
- .axis_map_z = 2,<br>
- .negate_x = 1,<br>
- .negate_y = 0,<br>
- .negate_z = 0,<br>
+ .axis_map_x = 0,
+ .axis_map_y = 1,
+ .axis_map_z = 2,
+ .negate_x = 0,
+ .negate_y = 0,
+ .negate_z = 0,
+ 
+Later
+ if (machine_is_tenderloin() && boardtype_is_3g()) {
+#ifdef CONFIG_INPUT_LSM303DLH
+        //      lsm303dlh_acc_pdata.negate_x = 1;
+        //      lsm303dlh_acc_pdata.negate_z = 1;
+        //      lsm303dlh_mag_pdata.negate_x = 1;
+        //      lsm303dlh_mag_pdata.negate_z = 1;
+
+ 
+
 
 System Partition:<br>
 1. Add ts_srv, make it executable<br>

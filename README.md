@@ -31,3 +31,8 @@ Add the files from Important Files After Compiling<br>
   QTWEBKIT_DPR=1.0<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 
+http://forum.xda-developers.com/showthread.php?t=2426924
+
+Justin Shafer
+OrokuSaki
+jshafer817

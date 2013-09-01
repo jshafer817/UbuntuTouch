@@ -30,3 +30,4 @@ Add the files from Important Files After Compiling
   GRID_UNIT_PX=8
   QTWEBKIT_DPR=1.0
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!
+

@@ -43,11 +43,14 @@ Add the files from Important Files After Compiling<br>
   QTWEBKIT_DPR=1.0<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 
-Sound Information:
+Sound Information:<br>
 Sound has an upstart called audiod.conf. You will notice it mounts webos and runs a program to initialize the sound. /usr/share/alsa/ucm should only have msm-audio the rest of the /usr/share/alsa/ucm file that I included is probably not important. default.pa for pulse has 1 line uncommened referring to alsa-sink.
 
-Bluetooth Information:
+Bluetooth Information:<br>
 Look at hcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and another file.
+
+Wifi Information:<br>
+ath6kl.ko needs to be insmodded. That is set in init.tenderloin.rc in overrides for the lxc containter.
 
 Camera Information:
 WIP

@@ -11,7 +11,17 @@ The Touchpad uses LVM partitions. I had to compile e2label and lvm for the ramdi
 
 Kernel Information:<br>
 Took the kernel from Milaq and changed the config file. Added all the Ubuntu Touch stuff, especially CGROUPS and CONFIG_TMPFS_POSIX=y.. I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement. I also changed the board-tenderloin.c file and flipped and X and Y for Rotation.
-https://bitbucket.org/cyanogenmod/hp-kernel-tenderloin/commits/be2dc4932490
+https://bitbucket.org/cyanogenmod/hp-kernel-tenderloin/commits/be2dc4932490<br>
+.h_range = LSM303DLH_MAG_H_4_0G<br>
+- .axis_map_x = 0,<br>
+- .axis_map_y = 1,<br>
++ .axis_map_x = 1,<br>
++ .axis_map_y = 0,<br>
+.axis_map_z = 2,<br>
+- .negate_x = 0,<br>
++ .negate_x = 1,<br>
+.negate_y = 0,<br>
+.negate_z = 0,<br>
 
 System Partition:<br>
 1. Add ts_srv, make it executable<br>

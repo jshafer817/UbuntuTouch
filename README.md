@@ -43,6 +43,15 @@ Add the files from Important Files After Compiling<br>
   QTWEBKIT_DPR=1.0<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 
+Sound Information:
+Sound has an upstart called audiod.conf. You will notice it mounts webos and runs a program to initialize the sound. /usr/share/alsa/ucm should only have msm-audio the rest of the /usr/share/alsa/ucm file that I included is probably not important. default.pa for pulse has 1 line uncommened referring to alsa-sink.
+
+Bluetooth Information:
+Look at hcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and another file.
+
+Camera Information:
+WIP
+
 http://forum.xda-developers.com/showthread.php?t=2426924<br>
 Thanks to:<br>
 Ogra, castrwilliam, CalcProgrammer, Mystikal57, JCSullins, Dorregray, w-flo.. and others from the #ubuntu-touch irc channel and Ubuntu 11.04-13.10 threads, cyanogen roms, solutions. etc... "I stand on the shoulders of giants"<br>

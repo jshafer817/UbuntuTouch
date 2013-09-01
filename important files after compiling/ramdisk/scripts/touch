@@ -1,0 +1,221 @@
+# Local filesystem mounting			-*- shell-script -*-
+
+pre_mountroot()
+{
+	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/local-top"
+	run_scripts /scripts/local-top
+	[ "$quiet" != "y" ] && log_end_msg
+}
+
+mountroot()
+{
+	# list of possible userdata partition names
+	partlist="userdata UDA DATAFS USERDATA"
+
+        /bin/lvm vgscan
+        /bin/lvm vgchange -ay
+        /bin/e2label /dev/store/cm-data DATAFS
+        /bin/e2label /dev/store/cm-system system
+        /bin/e2label /dev/store/cm-cache cache
+        udevadm trigger
+        udevadm settle
+
+	pre_mountroot
+
+	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/local-premount"
+	run_scripts /scripts/local-premount
+	[ "$quiet" != "y" ] && log_end_msg
+
+	# Mount root
+	#
+	# Create a temporary mountpoint for the bindmount
+	mkdir -p /tmpmnt
+
+	# Make sure the device has been created by udev before we try to mount
+	udevadm settle
+
+	# find the right partition
+	for partname in $partlist; do
+		part=$(find /dev -name $partname|tail -1)
+		path=$(readlink -f $part)
+		[ -n "$path" ] && break
+	done
+
+	# override with a possible cmdline parameter
+	if grep -q datapart= /proc/cmdline; then
+		for x in $(cat /proc/cmdline); do
+			case ${x} in
+			datapart=*)
+				path=${x#*=}
+				;;
+			esac
+		done
+	fi
+
+	if [ -z "$path" ]; then
+		echo "initrd: Couldn't find data partition. Spawning adbd ..." >/dev/kmsg || true
+		panic "Couldn't find data partition. Spawning adbd ..."
+	fi
+	echo "initrd: mounting $path" >/dev/kmsg || true
+
+	# Mount the data partition to a temporary mount point
+	mount $path /tmpmnt
+
+	# Loop-mounted flipped model
+	if [ -e /tmpmnt/system.img ]; then
+		# Transition .developer_mode to .writable_image
+		[ -e /tmpmnt/.developer_mode ] && mv /tmpmnt/.developer_mode /tmpmnt/.writable_image
+
+		# Prepare the root filesystem
+		if [ -e /tmpmnt/.writable_image ]; then
+			echo "initrd: mounting system.img (image developer mode)" >/dev/kmsg || true
+			mount -o loop,rw /tmpmnt/system.img ${rootmnt}
+			mountroot_status="$?"
+		else
+			echo "initrd: mounting system.img (user mode)" >/dev/kmsg || true
+			mount -o loop,ro /tmpmnt/system.img ${rootmnt}
+			mountroot_status="$?"
+		fi
+		mount --move /tmpmnt ${rootmnt}/userdata
+
+		# Mount the android system partition to a temporary location
+		mkdir -p /android-system /android-initrd
+		mount -o loop,ro ${rootmnt}/var/lib/lxc/android/system.img /android-system
+
+		# Get device information
+		device=$(grep ^ro.product.device= /android-system/build.prop |sed -e 's/.*=//')
+		[ -z "$device" ] && device="unknown"
+		echo "initrd: device is $device" >/dev/kmsg || true
+
+		# Mount some tmpfs
+		mount -o rw,size=4096 -t tmpfs none ${rootmnt}/android
+		mount -o rw,nosuid,noexec,relatime,mode=755 -t tmpfs tmpfs ${rootmnt}/run
+
+		# Create some needed paths on tmpfs
+		mkdir -p ${rootmnt}/android/data ${rootmnt}/android/system
+
+		# Prepare the fstab
+		FSTAB=${rootmnt}/etc/fstab
+		touch ${rootmnt}/run/image.fstab
+		mount -o bind ${rootmnt}/run/image.fstab $FSTAB || panic "drop to adb"
+		echo "/dev/root / rootfs defaults,ro 0 1" >> $FSTAB
+
+		# Process the list of bind-mounts
+		# (but don't mount them, mountall will do it)
+		cat ${rootmnt}/etc/system-image/writable-paths | while read line; do
+			set -- $line
+			# Skip invalid/commented entries
+			([ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ]) && continue
+			[ "$1" = "#" ] && continue
+
+			# Skip invalid mount points
+			dstpath="${rootmnt}/$1"
+			[ ! -e "$dstpath" ] && continue
+
+			if [ "$3" = "temporary" ]; then
+				# Temporary entries are simple, just mount a tmpfs
+				echo "tmpfs $1 tmpfs $5 0 1" >> $FSTAB
+			elif [ "$3" = "persistent" ]; then
+				# Figure out the source path
+				if [ "$2" = "auto" ]; then
+					srcpath="${rootmnt}/userdata/system-data/$1"
+					path="/userdata/system-data/$1"
+				else
+					srcpath="${rootmnt}/userdata/$2"
+					path="/userdata/$2"
+				fi
+
+				if [ ! -e "$srcpath" ]; then
+					# Process new persistent paths
+					mkdir -p ${srcpath%/*}
+					if [ ! -d "$dstpath" ]; then
+						# Deal with redirected files
+						if [ "$4" = "transition" ]; then
+							cp -a $dstpath $srcpath
+						else
+							touch $srcpath
+						fi
+					else
+						# Deal with redirected directories
+						if [ "$4" = "transition" ]; then
+							cp -aR $dstpath $srcpath
+						else
+							mkdir $srcpath
+						fi
+					fi
+				fi
+
+				# Write the fstab entry
+				if [ "$5" = "none" ]; then
+					echo "$path $1 none bind 0 1" >> $FSTAB
+				else
+					echo "$path $1 none bind,$5 0 1" >> $FSTAB
+				fi
+			else
+				continue
+			fi
+		done
+
+		# Extract the fstab from the android initrd
+		# NOTE: we should find a faster way of doing that or cache it
+		OLD_CWD=$(pwd)
+		cd /android-initrd
+		cat /android-system/boot/android-ramdisk.img | gzip -d | cpio -i fstab*
+		cd $OLD_CWD
+
+		# Mount all the Android partitions
+		cat /android-initrd/fstab.* | while read line; do
+			set -- $line
+
+			# Skip any unwanted entry
+			echo $1 | egrep -q "^#" && continue
+			([ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]) && continue
+			([ "$2" = "/system" ] || [ "$2" = "/data" ]) && continue
+
+			label=$(echo $1 | awk -F/ '{print $NF}')
+			[ -z "$label" ] && continue
+			for dir in by-partlabel by-name by-label; do
+				path="/dev/disk/$dir/$label"
+				[ -e "$path" ] && break
+			done
+			[ ! -e "$path" ] && continue
+
+			mkdir -p ${rootmnt}/android/$2
+			echo "initrd: mounting $path as ${rootmnt}/android/$2" >/dev/kmsg || true
+			mount $path ${rootmnt}/android/$2 -t $3 -o $4
+		done
+
+		# system is a special case
+		echo "initrd: mounting ${rootmnt}/var/lib/lxc/android/system.img as ${rootmnt}/android/system" >/dev/kmsg || true
+		mount --move /android-system ${rootmnt}/android/system
+
+		# Apply device-specific udev rules
+		if [ "$device" != "unknown" ]; then
+			mount --bind ${rootmnt}/usr/lib/lxc-android-config/70-$device.rules ${rootmnt}/lib/udev/rules.d/70-android.rules
+		fi
+
+		# Bind-mount /lib/modules from Android
+		[ -e /system/lib/modules ] && mount --bind /system/lib/modules /lib/modules
+
+		if [ -d ${rootmnt}/custom/home ] && [ ! -e ${rootmnt}/userdata/user-data/phablet/.customized ]; then
+			echo "initrd: copying custom content" >/dev/kmsg || true
+			cp -Rap ${rootmnt}/custom/home/* ${rootmnt}/userdata/user-data/phablet
+			cp -Rap ${rootmnt}/custom/home/.[a-zA-Z0-9]* ${rootmnt}/userdata/user-data/phablet
+			touch ${rootmnt}/userdata/user-data/phablet/.customized
+		fi
+
+	# Old flipped model
+	elif [ -d /tmpmnt/ubuntu ]; then
+		mount --bind /tmpmnt/ubuntu ${rootmnt}
+		mountroot_status="$?"
+
+	# Possibly a re-partitioned device
+	else
+		echo "initrd: Couldn't find a system partition." >/dev/kmsg || true
+		panic "Couldn't find a system partition. Spawning adbd ..."
+	fi
+
+	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/local-bottom"
+	run_scripts /scripts/local-bottom
+	[ "$quiet" != "y" ] && log_end_msg
+}

@@ -10,7 +10,11 @@ RamDisk Information:<br>
 The Touchpad uses LVM partitions. I had to compile e2label and lvm for the ramdisk to detect our partitions. I edited the touch script. Added udev rules, but removed dm-* from 60-persistent-storage.rules to get UUID's and Labels for the Data Partition to be DATAFS on every boot, no matter what.
 
 Kernel Information:<br>
-Took the kernel from Milaq and changed the config file. Added all the Ubuntu Touch stuff, especially CGROUPS and CONFIG_TMPFS_POSIX=y.. I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement. I also changed the board-tenderloin.c file and flipped and X and Y for Rotation.
+Took the kernel from Milaq and changed the config file. Added all the Ubuntu Touch stuff, especially CGROUPS and CONFIG_TMPFS_POSIX=y..<br>
+I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement.<br>
+http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html
+
+I also changed the board-tenderloin.c file and flipped and X and Y for Rotation.
 https://bitbucket.org/cyanogenmod/hp-kernel-tenderloin/commits/be2dc4932490<br>
 .h_range = LSM303DLH_MAG_H_4_0G<br>
  .axis_map_x = 1,<br>

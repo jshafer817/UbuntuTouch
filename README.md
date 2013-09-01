@@ -32,6 +32,8 @@ Add the files from Important Files After Compiling<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 
 http://forum.xda-developers.com/showthread.php?t=2426924<br>
-Aliases in the world: jshafer817 OrokuSaki<br>
+Thanks to:<br>
+Ogra, castrwilliam, CalcProgrammer, Mystikal57, JCSullins, Dorregray, w-flo.. and others from the #ubuntu-touch irc channel and Ubuntu 11.04-13.10 threads, cyanogen roms, solutions. etc... "I stand on the shoulders of giants"<br>
 
--Justin Shafer
+-Justin Shafer 
+aka OrokuSaki aka jshafer817

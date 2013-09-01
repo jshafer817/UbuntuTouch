@@ -35,5 +35,5 @@ http://forum.xda-developers.com/showthread.php?t=2426924<br>
 Thanks to:<br>
 Ogra, castrwilliam, CalcProgrammer, Mystikal57, JCSullins, Dorregray, w-flo.. and others from the #ubuntu-touch irc channel and Ubuntu 11.04-13.10 threads, cyanogen roms, solutions. etc... "I stand on the shoulders of giants"<br>
 
--Justin Shafer 
+-Justin Shafer<br>
 aka OrokuSaki aka jshafer817

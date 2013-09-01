@@ -27,7 +27,6 @@ Add the files from Important Files After Compiling
 6. Created init.rc and init.tenderloin for LXC Overrides. Added the insmod ath6kl.ko for wifi, and told the Sensor Service to start on main. The last part may not be necessary?
 7. /etc/init/ubuntu-touch-session-setup.conf has sleep 60 to start the session a minute later.
 8. ubuntu-touch-session.conf has the display settings set at:
-# defaults
   GRID_UNIT_PX=8
   QTWEBKIT_DPR=1.0
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!

@@ -38,6 +38,12 @@ ACTION=="add", KERNEL=="video20", OWNER="root", GROUP="root", MODE="0666"
 ACTION=="add", KERNEL=="video20", OWNER="root", GROUP="root", MODE="0666"
 ACTION=="add", KERNEL=="/dev/input/*", OWNER="root", GROUP="root", MODE="0666"
 ACTION=="add", KERNEL=="event2", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="event1", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="event0", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="isl29023*", OWNER="system", GROUP="system", MODE="0666"
+ACTION=="add", KERNEL=="lsm303dlh*", OWNER="system", GROUP="system", MODE="0666"
+ACTION=="add", KERNEL=="pmic8058*", OWNER="system", GROUP="system", MODE="0666"
+
 
 
 

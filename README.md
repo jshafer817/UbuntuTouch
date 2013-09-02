@@ -13,24 +13,22 @@ The Touchpad uses LVM partitions. I had to compile e2label and lvm for the ramdi
 Kernel Information:<br>
 Took the kernel from Milaq and changed the config file. Added all the Ubuntu Touch stuff, especially CGROUPS and CONFIG_TMPFS_POSIX=y and CONFIG_FAIR_GROUP_SCHED=y CONFIG_RT_GROUP_SCHED=y..<br>
 I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement.<br>
-http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html
+http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html<br>
 
-I also changed the board-tenderloin.c file and flipped and X and Y for Rotation.
-https://bitbucket.org/cyanogenmod/hp-kernel-tenderloin/commits/be2dc4932490<br>
- .axis_map_x = 0,
- .axis_map_y = 1,
- .axis_map_z = 2,
- .negate_x = 0,
- .negate_y = 0,
- .negate_z = 0,
+I also changed the board-tenderloin.c file and flipped and X and Y for Rotation.<br>
+ .axis_map_x = 0,<br>
+ .axis_map_y = 1,<br>
+ .axis_map_z = 2,<br>
+ .negate_x = 0,<br>
+ .negate_y = 0,<br>
+ .negate_z = 0,<br>
  
-Later
- if (machine_is_tenderloin() && boardtype_is_3g()) {
-#ifdef CONFIG_INPUT_LSM303DLH
-        //      lsm303dlh_acc_pdata.negate_x = 1;
-        //      lsm303dlh_acc_pdata.negate_z = 1;
-        //      lsm303dlh_mag_pdata.negate_x = 1;
-        //      lsm303dlh_mag_pdata.negate_z = 1;
+Around this line: if (machine_is_tenderloin() && boardtype_is_3g()) {<br>
+
+//      lsm303dlh_acc_pdata.negate_x = 1;<br>
+//      lsm303dlh_acc_pdata.negate_z = 1;<br>
+//      lsm303dlh_mag_pdata.negate_x = 1;<br>
+//      lsm303dlh_mag_pdata.negate_z = 1;<br>
 
  
 

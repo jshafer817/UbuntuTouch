@@ -11,3 +11,4 @@
 /system/vendor  /vendor auto    ro,bind 0       0
 /system /var/lib/lxc/android/rootfs/system auto	ro,bind 0	0
 /dm-0	/webos	ext4	ro,noatime,nodiratime,errors=remount-ro 0	0
+/dev/dm-6	/sdcard vfat  rw,errors=remount-ro,umask=0000 	0	0

@@ -44,7 +44,7 @@ Wifi Information:<br>
 ath6kl.ko needs to be insmodded. That is set in init.tenderloin.rc in overrides for the lxc containter.
 
 Camera Information:
-WIP
+Had to edit the camera-app.qml file to correct the 90 degree camera sensor in landscape mode.
 
 http://forum.xda-developers.com/showthread.php?t=2426924<br>
 Thanks to:<br>

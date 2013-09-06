@@ -460,6 +460,9 @@ void CameraHAL_FixupParams(android::CameraParameters &camParams)
     camParams.set(android::CameraParameters::KEY_MAX_CONTRAST, "10");
     camParams.set(android::CameraParameters::KEY_MAX_SATURATION, "10");
     camParams.set("num-snaps-per-shutter", "1");
+    camParams.set("front-camera-mode-values", "mirror"); 
+    camParams.set("front-camera-mode", "mirror");
+    camParams.set("rotation", "90"); 
 }
 
 int camera_set_preview_window(struct camera_device * device,
@@ -1203,4 +1206,3 @@ int camera_get_camera_info(int camera_id, struct camera_info *info)
     ALOGI("%s: id:%i faceing:%i orientation: %i", __FUNCTION__,camera_id, info->facing, info->orientation);
     return rv;
 }
-

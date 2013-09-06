@@ -18,7 +18,7 @@ mountroot()
         /bin/e2label /dev/store/cm-system system
         /bin/e2label /dev/store/cm-cache cache
         udevadm trigger
-        sleep 20
+        udevadm settle
 
 	pre_mountroot
 

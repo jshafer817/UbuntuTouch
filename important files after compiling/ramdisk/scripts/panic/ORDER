@@ -1,4 +1,0 @@
-/scripts/panic/adbd
-[ -e /conf/param.conf ] && . /conf/param.conf
-/scripts/panic/keymap
-[ -e /conf/param.conf ] && . /conf/param.conf

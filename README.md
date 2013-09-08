@@ -41,8 +41,8 @@ Add the files from Important Files After Compiling<br>
 11. Added killudev.conf to restart udev when ubuntu-touch-session is starting.<br>
 12. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>
 12. After boot we install:<br>
-a) enable multiverse for working codecs!!!!
-a) apt-get install gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly
+a) enable multiverse for working codecs!!!!<br>
+a) apt-get install gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly<br>
 c) apt-get install openssh-server<br>
 
 Sound Information:<br>

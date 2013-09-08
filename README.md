@@ -38,7 +38,12 @@ Add the files from Important Files After Compiling<br>
   QTWEBKIT_DPR=1.0<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 10. Changed the camera-app.qml, ubuntu-terminal-app.qml, and ubuntu-terminal-app.desktop files.<br>
-11. Added killudev.conf to restart udev when ubuntu-touch-session is starting.
+11. Added killudev.conf to restart udev when ubuntu-touch-session is starting.<br>
+12. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>
+12. After boot we install:<br>
+a) apt-get install gstreamer0.10-plugins-bad<br>
+b) apt-get install gstreamer0.10-plugins-ugly gstreamer0.10-ffmpeg libxine1-ffmpeg<br>
+c) apt-get install openssh-server<br>
 
 Sound Information:<br>
 Sound has an upstart called audiod.conf. You will notice it mounts webos and runs a program to initialize the sound. /usr/share/alsa/ucm should only have msm-audio the rest of the /usr/share/alsa/ucm file that I included is probably not important. default.pa for pulse has 1 line uncommened referring to alsa-sink.

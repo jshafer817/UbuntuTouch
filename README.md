@@ -43,6 +43,15 @@ Add the files from Important Files After Compiling<br>
 a) apt-get install openssh-server<br>
 b) install the debs in the /debs folder<br>
 
+To create a new RootFS?<br>
+1. run on device: <br>
+1a. tar --exclude=proc/* --exclude=sys/* --exclude=mnt/* --exclude=media/* --exclude=run/* --exclude=dev/* --exclude=proc/* --exclude=sys/* --exclude=run/* --exclude=tmp/* --exclude=system/* --exclude=data/* --exclude=vendor/* --exclude=webos/* --exclude=sdcard/* --exclude=ubuntu/* --one-file-system -zcvf "/sdcard/saucy-preinstalled-touch-armhf.tar.gz" *<br>
+2. pull new tar file you created and untar on pc into the folder you have your RootFS in.<br>
+3. tar backup as saucy-preinstalled-touch-armhf.tar.gz, add to zip<br>
+3a. sudo tar -zcvf ../saucy-preinstalled-touch-armhf.tar.gz *<br>
+3b. chown justin:justin tar.gz file we created<br>
+
+
 Sound Information:<br>
 Sound has an upstart called audiod.conf. You will notice it mounts webos and runs a program to initialize the sound. /usr/share/alsa/ucm should only have msm-audio the rest of the /usr/share/alsa/ucm file that I included is probably not important. default.pa for pulse has 1 line uncommened referring to alsa-sink.
 Patched udev and pulse<br>

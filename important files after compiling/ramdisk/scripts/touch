@@ -18,8 +18,7 @@ mountroot()
         /bin/e2label /dev/store/cm-system system
         /bin/e2label /dev/store/cm-cache cache
         udevadm trigger
-        udevadm settle
-
+        
 	pre_mountroot
 
 	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/local-premount"
@@ -32,7 +31,8 @@ mountroot()
 	mkdir -p /tmpmnt
 
 	# Make sure the device has been created by udev before we try to mount
-	udevadm settle
+	#udevadm settle (removed this to make it boot faster?)
+	sleep 5
 
 	# find the right partition
 	for partname in $partlist; do

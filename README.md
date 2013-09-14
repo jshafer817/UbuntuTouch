@@ -15,6 +15,7 @@ Took the kernel from Milaq and changed the config file. Added all the Ubuntu Tou
 I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement.<br>
 http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html<br>
 Used board-tenderloin.c from Milaq's cm10.2 or 10.1 for touchscreen rotation to be correct.
+accept4 system call was going to be added, but instead we recompile udev and pulseaudio with patches!!<br>
 
 Milaq Source Info:
 Changed cameraHAL.cpp to be FRONT_FACING, just in case. Added mirroring.
@@ -38,15 +39,14 @@ Add the files from Important Files After Compiling<br>
   QTWEBKIT_DPR=1.0<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 10. Changed the camera-app.qml, ubuntu-terminal-app.qml, and ubuntu-terminal-app.desktop files.<br>
-11. Added killudev.conf to restart udev when ubuntu-touch-session is starting.<br>
-12. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>
+11. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>
 12. After boot we install:<br>
-a) enable multiverse for working codecs!!!!<br>
-a) apt-get install gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly<br>
-c) apt-get install openssh-server<br>
+a) apt-get install openssh-server<br>
+b) install the debs in the /debs folder<br>
 
 Sound Information:<br>
 Sound has an upstart called audiod.conf. You will notice it mounts webos and runs a program to initialize the sound. /usr/share/alsa/ucm should only have msm-audio the rest of the /usr/share/alsa/ucm file that I included is probably not important. default.pa for pulse has 1 line uncommened referring to alsa-sink.
+Patched udev and pulse<br>
 
 Bluetooth Information:<br>
 Look at hcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and another file.

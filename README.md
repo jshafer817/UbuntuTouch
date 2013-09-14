@@ -40,8 +40,11 @@ Add the files from Important Files After Compiling<br>
 10. Changed the camera-app.qml, ubuntu-terminal-app.qml, and ubuntu-terminal-app.desktop files.<br>
 11. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>
 12. After boot we install:<br>
-a) apt-get install openssh-server<br>
-b) install the debs in the /debs folder<br>
+a) apt-get update<br>
+b) apt-get install --reinstall openssh-server<br>
+c) install the debs in the /debs folder<br>
+d) apt-get install -f<br>
+13. app-get install --reinstall click<br>
 
 To create a new RootFS?<br>
 1. run on device: <br>

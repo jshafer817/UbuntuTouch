@@ -173,11 +173,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service tsdriver /system/bin/ts_srv
-    class core
-    user root
-    critical
-
 service dcvs0 /system/bin/dcvs --cpu=0 --slacktime=64
     class core
     user root
@@ -203,4 +198,6 @@ service serial /sbin/serial
     disabled
     oneshot
 
-
+service tsdriver /system/bin/ts_srv
+    class main
+    user root

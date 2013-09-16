@@ -1,5 +1,5 @@
 Ubuntu Touch for the HP Touchpad<br>
-Saucy from 09-07-2013<br>
+Saucy from 09-11.1-2013 with all updates including unity from 09-11-2015 minus lxc<br>
 
 Android sources are from Milaq WITHOUT JCSullins Bluetooth fixes.
 

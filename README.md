@@ -30,9 +30,9 @@ Add the files from Important Files After Compiling<br>
 2. Told lxc-android-boot not to run update-fstab<br>
 3. Created udev rules for lvm that match the ramdisk, changed 60-persistent-storage.rules as well for dm<br>
 4. Created the 70-tenderloin.rules<br>
-5. Created system and vendor mount points just in case for fstab mounting<br>
+5. Created system, vendor, webos and sdcard mount points just in case for fstab mounting<br>
 6. Created init.rc and init.tenderloin for LXC Overrides. Added the insmod ath6kl.ko for wifi, and told the Sensor Service to start on main. The last part may not be necessary?<br>
-7. /etc/init/ubuntu-touch-session-setup.conf has sleep 60 to start the session a minute later.<br>
+7. /etc/init/ubuntu-touch-session-setup.conf has sleep 15 to start the session a minute later.<br>
 8. ubuntu-touch-session.conf has the display settings set at:<br>
   GRID_UNIT_PX=8<br>
   QTWEBKIT_DPR=1.0<br>

@@ -48,7 +48,8 @@ d) apt-get install -f<br>
 
 To create a new RootFS?<br>
 1. run on device: <br>
-1a. tar --exclude=proc/* --exclude=sys/* --exclude=mnt/* --exclude=media/* --exclude=run/* --exclude=dev/* --exclude=proc/* --exclude=sys/* --exclude=run/* --exclude=tmp/* --exclude=system/* --exclude=data/* --exclude=vendor/* --exclude=webos/* --exclude=sdcard/* --exclude=ubuntu/* --one-file-system -zcvf "/sdcard/saucy-preinstalled-touch-armhf.tar.gz" *<br>
+1a. cd /data/ubuntu<br>
+1b. tar -zcvf "/sdcard/saucy-preinstalled-touch-armhf.tar.gz" *<br>
 2. pull new tar file you created and untar on pc into the folder you have your RootFS in.<br>
 3. tar backup as saucy-preinstalled-touch-armhf.tar.gz, add to zip<br>
 3a. sudo tar -zcvf ../saucy-preinstalled-touch-armhf.tar.gz *<br>

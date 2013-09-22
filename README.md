@@ -33,7 +33,7 @@ Add the files from Important Files After Compiling<br>
 5. Created system, vendor, webos and sdcard mount points just in case for fstab mounting<br>
 6. Created init.rc and init.tenderloin for LXC Overrides. Added the insmod ath6kl.ko for wifi, and told the Sensor Service to start on main. The last part may not be necessary?<br>
 7. /etc/init/ubuntu-touch-session-setup.conf has sleep 15 to start the session a minute later.<br>
-8. /etc/ubuntu-touch-session.d/tenderloin.conf
+8. /etc/ubuntu-touch-session.d/tenderloin.conf<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 10. Changed the camera-app.qml, ubuntu-terminal-app.qml, and ubuntu-terminal-app.desktop files.<br>
 11. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>

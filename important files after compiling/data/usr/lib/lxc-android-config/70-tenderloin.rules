@@ -27,7 +27,7 @@ ACTION=="add", KERNEL=="msm_rotator", OWNER="system", GROUP="graphics", MODE="06
 ACTION=="add", KERNEL=="pvrsrvkm*", OWNER="root", GROUP="root", MODE="0666"
 ACTION=="add", KERNEL=="kgsl-2d0*", OWNER="root", GROUP="root", MODE="0666"
 ACTION=="add", KERNEL=="kgsl-3d0*", OWNER="root", GROUP="root", MODE="0666"
-ACTION=="add", KERNEL=="kgs1-2d1*", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="kgsl-2d1*", OWNER="root", GROUP="root", MODE="0666"
 ACTION=="add", KERNEL=="lm8502", OWNER="system", GROUP="system", MODE="0666"
 ACTION=="add", KERNEL=="pmem", OWNER="system", GROUP="graphics", MODE="0666"
 ACTION=="add", KERNEL=="genlock", OWNER="system", GROUP="graphics", MODE="0666"

@@ -32,6 +32,17 @@ ACTION=="add", KERNEL=="lm8502", OWNER="system", GROUP="system", MODE="0666"
 ACTION=="add", KERNEL=="pmem", OWNER="system", GROUP="graphics", MODE="0666"
 ACTION=="add", KERNEL=="genlock", OWNER="system", GROUP="graphics", MODE="0666"
 ACTION=="add", KERNEL=="ttyHS0", OWNER="bluetooth", GROUP="bluetooth", MODE="0600"
+ACTION=="add", KERNEL=="/dev/snd/*", OWNER="system", GROUP="audio", MODE="0660"
+ACTION=="add", KERNEL=="/dev/video20", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="video20", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="video20", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="/dev/input/*", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="event2", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="event1", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="event0", OWNER="root", GROUP="root", MODE="0666"
+ACTION=="add", KERNEL=="isl29023*", OWNER="system", GROUP="system", MODE="0666"
+ACTION=="add", KERNEL=="lsm303dlh*", OWNER="system", GROUP="system", MODE="0666"
+ACTION=="add", KERNEL=="pmic8058*", OWNER="system", GROUP="system", MODE="0666"
 
 
 

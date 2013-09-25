@@ -8,6 +8,6 @@ env user=phablet
 export user
 
 script
-    sleep 30
+    sleep 60
     start ubuntu-touch-session USER=phablet
 end script

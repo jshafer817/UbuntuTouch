@@ -1,10 +1,15 @@
 Ubuntu Touch for the HP Touchpad<br>
 Saucy from 09-11.1-2013 with all updates including unity from 09-11-2015 minus lxc<br>
 
-Android sources are from Milaq WITHOUT JCSullins Bluetooth fixes.
+Android sources are from Milaq WITHOUT JCSullins Bluetooth fixes.<br>
+Changed LIFTOFF_TIMEOUT in ts_srv.c<br>
+Changed cameraHAL.cpp<br>
+Changed main.mk for Ubuntu Touch to include /device/hp/tenderloin and vendor<br>
+Included tinyalsa patch from jcsullins<br>
+etc.<br>
 
 Download Ubuntu Touch, replace the folders from the "Source to compile" Folder.<br>
-It *should compile* as of 09-01-2013.
+It *should compile* as of 09-01-2013.<br>
 
 RamDisk Information:<br>
 The Touchpad uses LVM partitions. I had to compile e2label and lvm for the ramdisk to detect our partitions. I edited the touch script. Added udev rules, but removed dm-* from 60-persistent-storage.rules to get UUID's and Labels for the Data Partition to be DATAFS on every boot, no matter what.
@@ -20,9 +25,7 @@ Milaq Source Info:
 Changed cameraHAL.cpp to be FRONT_FACING, just in case. Added mirroring.
 
 System Partition:<br>
-1. Add ts_srv, make it executable<br>
-2. Create /vendor/etc/audio_effects, and the vendor directory, as it is missing<br>
-3. Imported files from Milaq's CM10.1 Rom /system/lib/hw<br>
+1. Create /vendor/etc/audio_effects, and the vendor directory, as it is missing<br>
 
 Data Partition<br>
 Add the files from Important Files After Compiling<br>

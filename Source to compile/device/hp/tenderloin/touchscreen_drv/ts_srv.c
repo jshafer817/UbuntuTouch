@@ -85,7 +85,7 @@
 #define USERSPACE_270_ROTATE 0
 
 #define RECV_BUF_SIZE 1540
-#define LIFTOFF_TIMEOUT 30000
+#define LIFTOFF_TIMEOUT 35000
 #define SOCKET_BUFFER_SIZE 10
 
 #define MAX_TOUCH 10 // Max touches that will be reported

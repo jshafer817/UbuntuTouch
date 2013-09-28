@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="CyanogenMod/android_kernel_hp_tenderloin" path="kernel/hp/tenderloin"/>
+  <project name="CyanogenMod/android_device_hp_tenderloin" path="device/hp/tenderloin"/>
+  <project name="CyanogenMod/android_vendor_hp_tenderloin" path="vendor/hp/tenderloin"/>
+</manifest>

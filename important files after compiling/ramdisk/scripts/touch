@@ -12,13 +12,7 @@ mountroot()
 	# list of possible userdata partition names
 	partlist="userdata UDA DATAFS USERDATA"
 
-        /bin/lvm vgscan
-        /bin/lvm vgchange -ay
-        /bin/e2label /dev/store/cm-data DATAFS
-        /bin/e2label /dev/store/cm-system system
-        /bin/e2label /dev/store/cm-cache cache
-        udevadm trigger
-        
+	udevadm trigger
 	pre_mountroot
 
 	[ "$quiet" != "y" ] && log_begin_msg "Running /scripts/local-premount"
@@ -31,8 +25,7 @@ mountroot()
 	mkdir -p /tmpmnt
 
 	# Make sure the device has been created by udev before we try to mount
-	#udevadm settle (removed this to make it boot faster?)
-	sleep 5
+	udevadm settle
 
 	# find the right partition
 	for partname in $partlist; do
@@ -126,6 +119,8 @@ mountroot()
 				fi
 
 				if [ ! -e "$srcpath" ]; then
+					dstown=$(stat -c "%u:%g" $dstpath)
+					dstmode=$(stat -c "%a" $dstpath)
 					# Process new persistent paths
 					mkdir -p ${srcpath%/*}
 					if [ ! -d "$dstpath" ]; then
@@ -134,6 +129,8 @@ mountroot()
 							cp -a $dstpath $srcpath
 						else
 							touch $srcpath
+							chown $dstown $srcpath
+							chmod $dstmode $srcpath
 						fi
 					else
 						# Deal with redirected directories
@@ -141,6 +138,8 @@ mountroot()
 							cp -aR $dstpath $srcpath
 						else
 							mkdir $srcpath
+							chown $dstown $srcpath
+							chmod $dstmode $srcpath
 						fi
 					fi
 				fi
@@ -195,13 +194,19 @@ mountroot()
 		fi
 
 		# Bind-mount /lib/modules from Android
-		[ -e /system/lib/modules ] && mount --bind /system/lib/modules /lib/modules
+		[ -e ${rootmnt}/android/system/lib/modules ] && mount --bind ${rootmnt}/android/system/lib/modules ${rootmnt}/lib/modules
 
+		# Setup the swap device
+		[ -e ${rootmnt}/userdata/SWAP.img ] && swapon ${rootmnt}/userdata/SWAP.img
+
+		# Apply customized content
 		if [ -d ${rootmnt}/custom/home ] && [ ! -e ${rootmnt}/userdata/user-data/phablet/.customized ]; then
 			echo "initrd: copying custom content" >/dev/kmsg || true
 			cp -Rap ${rootmnt}/custom/home/* ${rootmnt}/userdata/user-data/phablet
 			cp -Rap ${rootmnt}/custom/home/.[a-zA-Z0-9]* ${rootmnt}/userdata/user-data/phablet
 			touch ${rootmnt}/userdata/user-data/phablet/.customized
+			dstown=$(stat -c "%u:%g" ${rootmnt}/userdata/user-data/phablet)
+			chown -R $dstown ${rootmnt}/userdata/user-data/phablet
 		fi
 
 	# Old flipped model

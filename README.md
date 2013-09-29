@@ -78,8 +78,7 @@ c) cd ../../..<br>
 d) mkdir -p out/host/linux-x86/bin<br>
 e) cp system/extras/mkimage/mkimage out/host/linux-x86/bin<br>
 f) brunch tenderloin<br>
-
-2. Look at project.list, roomservice.xml, manifest.xml, main.mk, Makefile?<br>
+***Look at project.list, roomservice.xml, manifest.xml, main.mk, Makefile?<br>
 
 http://forum.xda-developers.com/showthread.php?t=2426924<br>
 Thanks to:<br>

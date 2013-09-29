@@ -71,7 +71,7 @@ Camera Information:<br>
 Had to edit the camera-app.qml file to correct the 90 degree camera sensor in landscape mode.<br>
 
 How to compile notes?<br>
-1.<br>
+1.Create mkimage and put it in it's place<br>
 a)cd system/extras/mkimage<br>
 b. gcc mkimage.c -o mkimage -lz<br>
 c) cd ../../..<br>

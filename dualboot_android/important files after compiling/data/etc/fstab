@@ -4,9 +4,9 @@
 # swap file
 /SWAP.swap		none	swap	sw		0	0
 # added by lxc-android-boot for /system
-/dev/dm-12	/system	ext4	ro,noatime,nodiratime,errors=remount-ro	0	0
+/dev/dm-11	/system	ext4	ro,noatime,nodiratime,errors=remount-ro	0	0
 # added by lxc-android-boot for /data
-/dev/dm-13	/data	ext4	noatime,nodiratime,errors=remount-ro	0	0
+/dev/dm-12	/data	ext4	noatime,nodiratime,errors=remount-ro	0	0
 # added by lxc-android-boot for /vendor
 /system/vendor  /vendor auto    ro,bind 0       0
 /system /var/lib/lxc/android/rootfs/system auto	ro,bind 0	0

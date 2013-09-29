@@ -62,13 +62,24 @@ Sound has an upstart called audiod.conf. You will notice it mounts webos and run
 Patched udev and pulse<br>
 
 Bluetooth Information:<br>
-Look at hcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and another file.
+Look at hcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and another file.<br>
 
 Wifi Information:<br>
-ath6kl.ko needs to be insmodded. That is set in init.tenderloin.rc in overrides for the lxc containter.
+ath6kl.ko needs to be insmodded. That is set in init.tenderloin.rc in overrides for the lxc containter.<br>
 
-Camera Information:
-Had to edit the camera-app.qml file to correct the 90 degree camera sensor in landscape mode.
+Camera Information:<br>
+Had to edit the camera-app.qml file to correct the 90 degree camera sensor in landscape mode.<br>
+
+How to compile notes?<br>
+1.
+a)cd system/extras/mkimage
+b. gcc mkimage.c -o mkimage -lz
+c) cd ../../..
+d) mkdir -p out/host/linux-x86/bin
+e) cp system/extras/mkimage/mkimage out/host/linux-x86/bin
+f) brunch tenderloin
+
+2. Look at project.list, roomservice.xml, manifest.xml, main.mk, Makefile?
 
 http://forum.xda-developers.com/showthread.php?t=2426924<br>
 Thanks to:<br>

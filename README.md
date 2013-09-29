@@ -71,19 +71,19 @@ Camera Information:<br>
 Had to edit the camera-app.qml file to correct the 90 degree camera sensor in landscape mode.<br>
 
 How to compile notes?<br>
-1.
-a)cd system/extras/mkimage
-b. gcc mkimage.c -o mkimage -lz
-c) cd ../../..
-d) mkdir -p out/host/linux-x86/bin
-e) cp system/extras/mkimage/mkimage out/host/linux-x86/bin
-f) brunch tenderloin
+1.<br>
+a)cd system/extras/mkimage<br>
+b. gcc mkimage.c -o mkimage -lz<br>
+c) cd ../../..<br>
+d) mkdir -p out/host/linux-x86/bin<br>
+e) cp system/extras/mkimage/mkimage out/host/linux-x86/bin<br>
+f) brunch tenderloin<br>
 
-2. Look at project.list, roomservice.xml, manifest.xml, main.mk, Makefile?
+2. Look at project.list, roomservice.xml, manifest.xml, main.mk, Makefile?<br>
 
 http://forum.xda-developers.com/showthread.php?t=2426924<br>
 Thanks to:<br>
 Ogra, castrwilliam, CalcProgrammer, Mystikal57, JCSullins, Dorregray, w-flo.. and others from the #ubuntu-touch irc channel and Ubuntu 11.04-13.10 threads, cyanogen roms, solutions. etc... "I stand on the shoulders of giants"<br>
 
 -Justin Shafer<br>
-aka OrokuSaki aka jshafer817
+aka OrokuSaki aka jshafer817<br>

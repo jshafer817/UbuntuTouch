@@ -39,7 +39,7 @@ rmdir /boot
 
 #E2LABEL
 mkdir /e2label
-mount -o rw -t ext4 /dev/store/cm-data /e2label
+mount -o rw -t ext4 /dev/store/ut-data /e2label
 /e2label/ubuntu/sbin/e2label.static -L DATAFS /dev/store/ut-data
 /e2label/ubuntu/sbin/e2label.static -L system /dev/store/ut-system
 /e2label/ubuntu/sbin/e2label.static -L cache /dev/store/ut-cache

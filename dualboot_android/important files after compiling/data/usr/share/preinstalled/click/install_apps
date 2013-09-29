@@ -1,0 +1,13 @@
+sudo click install ./com.ubuntu.developer.majster-pl.ushopper-0.1.5.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.mhall119.xda-developers-app-0.1.7.click --force-missing-framework --all-users
+sudo click install ./de.djfun.akari-0.1.1.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.mhall119.ureadit-0.9.3.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.dgalg.wordchain-0.4.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.mzanetti.ubuntu-fitbit-app_0.1_unknown.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.mdspencer.ubuntu-tasks_0.4.1_unknown.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.mhall119.googleplus-0.3.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.cwayne18.uwoot_0.1_unknown.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.diegosarmentero.tabugame_0.1_unknown.click --force-missing-framework --all-users
+sudo click install ./ar.com.beuno.hello-world-0.6.click --force-missing-framework --all-users
+sudo click install ./com.ubuntu.developer.alecu.qr-code-0.2.click --force-missing-framework --all-users
+

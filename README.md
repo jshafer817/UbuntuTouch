@@ -18,6 +18,7 @@ Kernel Information:<br>
 Took the kernel from Milaq and changed the config file. Added all the Ubuntu Touch stuff, especially CGROUPS and CONFIG_TMPFS_POSIX=y and CONFIG_FAIR_GROUP_SCHED=y CONFIG_RT_GROUP_SCHED=y..<br>
 I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement.<br>
 http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html<br>
+Changed the cmdline of the kernel from the porting guide. Apparmor=0 and console=tty1<br>
 Used board-tenderloin.c from Milaq's cm10.2 or 10.1 for touchscreen rotation to be correct.
 accept4 system call was going to be added, but instead we recompile udev and pulseaudio with patches!!<br>
 

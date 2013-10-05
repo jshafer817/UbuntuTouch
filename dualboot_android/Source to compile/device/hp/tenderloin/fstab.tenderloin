@@ -1,4 +1,0 @@
-/dev/store/ut-system	/system	ext4	wait ro barrier=1	0	0
-/dev/store/ut-data	/data	ext4	wait noatime nodev barrier=1 noauto_da_alloc	0	0
-/dev/store/ut-cache     /cache  ext4    wait noatime nosuid nodev barrier=1    0
-

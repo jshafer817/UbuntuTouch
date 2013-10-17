@@ -16,6 +16,19 @@ curl -L -o .repo/local_manifests/roomservice.xml -O -L https://raw.github.com/ST
 Then to sync up:<br>
 
 phablet-dev-bootstrap [target_directory that you chose] -c<br>
+cd external/tinyalsa<br>
+git pull http://review.cyanogenmod.org/CyanogenMod/android_external_tinyalsa refs/changes/46/33646/1<br>
+cd ../..<br>
+cd system/extras/mkimage<br>
+gcc mkimage.c -o mkimage -lz<br>
+cd ../../..<br>
+mkdir -p out/host/linux-x86/bin<br>
+cp system/extras/mkimage/mkimage out/host/linux-x86/bin<br>
+gedit build/core/Makefile around line 1231, remove this $(INSTALLED_BOOTIMAGE_TARGET_ANDROID) \ (save the file, close)<br>
+cd vendor/cm<br>
+./get-prebuilts<br>
+cd ../..<br>
+brunch tenderloin<br>
 
 -----------------------------------------------------------------<br>
 Saucy from 09-11.1-2013 with all updates including unity from 09-11-2015 minus lxc<br>

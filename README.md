@@ -11,7 +11,7 @@ To initialize your local repository using the Ubuntu phablet manifest, use comma
 
 phablet-dev-bootstrap [target_directory that you chose]<br>
 
-curl -L -o .repo/local_manifests/roomservice.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/phablet/phablet.xml<br>
+curl -L -o .repo/local_manifests/roomservice.xml -O -L http://raw.github.com/jshafer817/UbuntuTouch/master/roomservice.xml<br>
 
 Then to sync up:<br>
 

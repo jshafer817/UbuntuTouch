@@ -20,32 +20,13 @@ phablet-dev-bootstrap [target_directory that you chose] -c<br>
 -----------------------------------------------------------------<br>
 Saucy from 09-11.1-2013 with all updates including unity from 09-11-2015 minus lxc<br>
 
-Android sources are from Milaq WITHOUT JCSullins Bluetooth fixes.<br>
-Changed LIFTOFF_TIMEOUT in ts_srv.c<br>
-Changed cameraHAL.cpp<br>
-Changed main.mk for Ubuntu Touch to include /device/hp/tenderloin and vendor<br>
-Included tinyalsa patch from jcsullins<br>
-etc.<br>
-
-Download Ubuntu Touch, replace the folders from the "Source to compile" Folder.<br>
-It *should compile* as of 09-01-2013.<br>
-
 RamDisk Information:<br>
-The Touchpad uses LVM partitions. I had to compile e2label and lvm for the ramdisk to detect our partitions. I edited the touch script. Added udev rules, but removed dm-* from 60-persistent-storage.rules to get UUID's and Labels for the Data Partition to be DATAFS on every boot, no matter what.
+The Touchpad uses LVM partitions. I had to compile e2label and lvm for the ramdisk to detect our partitions. It is added to /init.<br>
 
 Kernel Information:<br>
 Took the kernel from Milaq and changed the config file. Added all the Ubuntu Touch stuff, especially CGROUPS and CONFIG_TMPFS_POSIX=y and CONFIG_FAIR_GROUP_SCHED=y CONFIG_RT_GROUP_SCHED=y..<br>
-I added a patch I found that makes the kernel automatically mount /sys/fs/cgroups as this seems to be a requirement.<br>
-http://lists.linux-foundation.org/pipermail/containers/2010-July/024998.html<br>
-Changed the cmdline of the kernel from the porting guide. Apparmor=0 and console=tty1<br>
-Used board-tenderloin.c from Milaq's cm10.2 or 10.1 for touchscreen rotation to be correct.
-accept4 system call was going to be added, but instead we recompile udev and pulseaudio with patches!!<br>
+Added the Mer Touchpad patches, including Accept4.
 
-Milaq Source Info:
-Changed cameraHAL.cpp to be FRONT_FACING, just in case. Added mirroring.
-
-System Partition:<br>
-1. Create /vendor/etc/audio_effects, and the vendor directory, as it is missing<br>
 
 Data Partition<br>
 Add the files from Important Files After Compiling<br>
@@ -60,29 +41,14 @@ Add the files from Important Files After Compiling<br>
 9. Used audiod.conf and bcattach.conf from Ubuntu non touch projects.. from.. various people!<br>
 10. Changed the camera-app.qml, ubuntu-terminal-app.qml, and ubuntu-terminal-app.desktop files.<br>
 11. Added /usr/bin/aa-strip .desktop files of aa-exec settings for apparmor, and /etc/crontab to schedule it to run every 1 minute.<br>
-12. After boot we install:<br>
-a) apt-get update<br>
-b) apt-get install --reinstall openssh-server<br>
-c) install the debs in the /debs folder<br>
-d) apt-get install -f<br>
-
-
-To create a new RootFS?<br>
-1. run on device: <br>
-1a. cd /data/ubuntu<br>
-1b. tar -zcvf "/sdcard/saucy-preinstalled-touch-armhf.tar.gz" *<br>
-2. pull new tar file you created and untar on pc into the folder you have your RootFS in.<br>
-3. tar backup as saucy-preinstalled-touch-armhf.tar.gz, add to zip<br>
-3a. sudo tar -zcvf ../saucy-preinstalled-touch-armhf.tar.gz *<br>
-3b. chown justin:justin tar.gz file we created<br>
 
 
 Sound Information:<br>
 Sound has an upstart called audiod.conf. You will notice it mounts webos and runs a program to initialize the sound. /usr/share/alsa/ucm should only have msm-audio the rest of the /usr/share/alsa/ucm file that I included is probably not important. default.pa for pulse has 1 line uncommened referring to alsa-sink.
-Patched udev and pulse<br>
+Patched pulse<br>
 
 Bluetooth Information:<br>
-Look at hcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and another file.<br>
+Look at bcattach.conf in /etc/init for an upstart job. We bought over hcattach_awesome and bcattach.<br>
 
 Wifi Information:<br>
 ath6kl.ko needs to be insmodded. That is set in init.tenderloin.rc in overrides for the lxc containter.<br>

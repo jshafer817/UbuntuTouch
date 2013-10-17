@@ -1,4 +1,23 @@
 Ubuntu Touch for the HP Touchpad<br>
+How to compile:<br>
+
+Make a build directory:<br>
+
+mkdir UTA (or whatever name you choose )<br>
+cd UTA (or the name  you chose)<br>
+mkdir .repo/local_manifests<br>
+
+To initialize your local repository using the Ubuntu phablet manifest, use commands like these:<br>
+
+phablet-dev-bootstrap [target_directory that you chose]<br>
+
+curl -L -o .repo/local_manifests/roomservice.xml -O -L https://raw.github.com/STS-Dev-Team/android_local_STS/phablet/phablet.xml<br>
+
+Then to sync up:<br>
+
+phablet-dev-bootstrap [target_directory that you chose] -c<br>
+
+-----------------------------------------------------------------<br>
 Saucy from 09-11.1-2013 with all updates including unity from 09-11-2015 minus lxc<br>
 
 Android sources are from Milaq WITHOUT JCSullins Bluetooth fixes.<br>

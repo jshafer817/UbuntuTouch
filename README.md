@@ -25,6 +25,7 @@ cd ../../..<br>
 mkdir -p out/host/linux-x86/bin<br>
 cp system/extras/mkimage/mkimage out/host/linux-x86/bin<br>
 gedit build/core/Makefile around line 1231, remove this $(INSTALLED_BOOTIMAGE_TARGET_ANDROID) \ (save the file, close)<br>
+gedit build/core/main.mk add this to were the other device entires are: device/hp \<br>
 cd vendor/cm<br>
 ./get-prebuilts<br>
 cd ../..<br>

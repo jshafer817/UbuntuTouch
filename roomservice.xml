@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <manifest>
+
+    <project path="device/hp/tenderloin"
+      name="jshafer817/android_device_hp_tenderloin"
+      remote="github"
+      revision="cm-10.1"/>
+
+    <project path="kernel/hp/tenderloin"
+      name="jshafer817/android_kernel_hp_tenderloin"
+      remote="github"
+      revision="cm-10.1"/>
+
+    <project path="vendor/hp"
+      name="TheMuppets/proprietary_vendor_hp"
+      remote="github"
+      revision="jellybean"/>
+
+    <project path="vendor/fonts-roboto"
+      name="milaq/android_vendor_fonts-roboto"
+      remote="github"
+      revision="mr2"/>
+
+    <project path="external/backports-wireless"
+      name="jcsullins/backports-3.10-2"
+      remote="github"
+      revision="master"/>
+
+    <project path="hardware/atheros/wlan"
+      name="milaq/android_hardware_atheros_wlan"
+      remote="github"
+      revision="cm-10.1"/>
+
+    <project path="hardware/qcom/display-legacy"
+      name="arco/android_hardware_qcom_display-legacy"
+      remote="github"
+      revision="cm-10.1_old"/>
+
+    <project path="hardware/qcom/media-legacy"
+      name="arco/android_hardware_qcom_media-legacy"
+      remote="github"
+      revision="cm-10.1_old"/>
+    
+  </manifest>
